@@ -172,12 +172,13 @@ function bin2brand(binarray)
         for(var j = 0; j < 4; j++)
         {
             if(i * 8 + j * 6 > binarray.length * 32) str += b64pad;
-            else str += tab.charAt((triplet >> 8*(3-j)) & 0x3F);
+            else str += tab.charAt((triplet >> 6*(3-j)) & 0x3F);
         }
     }
     return str;
 
 }
+
 function make_st(binarray) {
     var tab  = "!#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
     var i = 0;
@@ -185,11 +186,10 @@ function make_st(binarray) {
         var triplet = (((binarray[i >> 2] >> 8 * (3 - i %4)) & 0xFF) << 16)
             | (((binarray[i+1 >> 2] >> 8 * (3 - (i+1)%4)) & 0xFF) << 8 )
             | ((binarray[i+2 >> 2] >> 8 * (3 - (i+2)%4)) & 0xFF);
-        tab = tab.slice(0, (triplet % tab.length)) + tab.slice((triplet % tab.length) + 1);
+        tab = tab.slice(0, (triplet % tab.length)) + tab.slice((triplet % tab.length) + 1, tab.length);
         i++;
     }
-    return tab
-
+    return tab;
 }
 
 function limitlength(val) {
