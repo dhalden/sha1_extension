@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>SHA1</title>
+        <script language="javascript" src="popup.js"></script>
+   </head>
+    <body>
+    <h1>SHA1</h1>
+    <noscript><p>You need to enable Javascript for this to work.</p></noscript>
+    <form name="f">
+        Optional prefix: <input type="password" id="prefix" name="prefix" /><br/>
+        <textarea rows="5" cols="50" id="message" name="message"></textarea><br/>
+        <select name="lenlimit" id="lenlimit">
+            <option value="-1">All chars</option>
+            <option value="6">First 6</option>
+            <option value="8">First 8</option>
+            <option value="10">First 10</option>
+            <option value="12" selected="selected">First 12</option>
+            <option value="15">First 15</option>
+        </select>
+        <input id='hashb' type="button" value="Hash Hex"/>
+        <input id="b64b" type="button" value="Hash B64"/>
+        <input id="random" type="button" value="Hash B96"/>
+        <br/>
+        <textarea id="hash" rows="1" cols="50" name="hash"></textarea>
+    </form>
+</body>
+</head>
+</html>
