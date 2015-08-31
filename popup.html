@@ -18,18 +18,16 @@
             <option value="12" selected="selected">First 12</option>
             <option value="15">First 15</option>
         </select>
-        padded:
-        <input id='hashb' type="button" value="Hash Hex"/>
-        <input id="b64b" type="button" value="Hash B64"/>
-        <input id="random" type="button" value="Hash B96"/>
+        <select id="hashtype">
+            <option value="hashh">Hash Hex</option>
+            <option value="hashb64">Hash B64</option>
+            <option value="hashb96">Hash B96</option>
+            <option value="oghashh" selected="selected">Original Hash Hex</option>
+            <option value="oghashb64">Original Hash B64</option>
+            <option value="oghashb96">Original Hash B96</option>
+        </select>
+        <input id="hashbutton" value="hash" type="button"\>
         <br/>
-        Original:
-        <br/>
-        <input id='oghashb' type="button" value="Hash Hex"/>
-        <input id="ogb64b" type="button" value="Hash B64"/>
-        <input id="ograndom" type="button" value="Hash B96"/>
-        <br/>
-
         <textarea id="hash" rows="1" cols="50" name="hash"></textarea>
     </form>
 </body>

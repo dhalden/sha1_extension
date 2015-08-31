@@ -260,51 +260,40 @@ function pad(n, width, z) {
           return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
 }
 
-function addOriginalListener(Id) {
-var hash = document.getElementById('oghashb');
-    hash.addEventListener('click', function() {
-        document.getElementById('hash').value =
-        limitlength(og_hex_sha1(document.getElementById('prefix').value + 
-                  document.getElementById('message').value));
-    });
-}
 document.addEventListener('DOMContentLoaded', function() {
-    var hash = document.getElementById('hashb');
+    var hash = document.getElementById('hashbutton');
     hash.addEventListener('click', function() {
-        document.getElementById('hash').value =
-        limitlength(hex_sha1(document.getElementById('prefix').value, 
+        switch(document.getElementById("hashtype").value) {
+        case "hashh":
+            document.getElementById('hash').value =
+            limitlength(hex_sha1(document.getElementById('prefix').value, 
                   document.getElementById('message').value));
-    });
-
-    var hashb = document.getElementById('b64b');
-    hashb.addEventListener('click', function() {
-        document.getElementById('hash').value =
-        limitlength(b64_sha1(document.getElementById('prefix').value, 
-                document.getElementById('message').value));
-    });
-
-    var hashr = document.getElementById('random');
-    hashr.addEventListener('click', function() {
-        document.getElementById('hash').value =
-        limitlength(b96_sha1(document.getElementById('prefix').value,
-                document.getElementById('message').value));
-    });
-    hash = document.getElementById('oghashb');
-    hash.addEventListener('click', function() {
-        document.getElementById('hash').value =
-        limitlength(og_hex_sha1(document.getElementById('prefix').value + 
+            break;
+        case "hashb64":
+            document.getElementById('hash').value =
+            limitlength(b64_sha1(document.getElementById('prefix').value, 
                   document.getElementById('message').value));
-    });
-    hash = document.getElementById('ogb64b');
-    hash.addEventListener('click', function() {
-        document.getElementById('hash').value =
-        limitlength(og_b64_sha1(document.getElementById('prefix').value + 
+            break;
+        case "hashb96":
+            document.getElementById('hash').value =
+            limitlength(b96_sha1(document.getElementById('prefix').value, 
                   document.getElementById('message').value));
-    });
-    hash = document.getElementById('ograndom');
-    hash.addEventListener('click', function() {
-        document.getElementById('hash').value =
-        limitlength(og_b96_sha1(document.getElementById('prefix').value + 
+            break;
+        case "oghashh":
+            document.getElementById('hash').value =
+            limitlength(og_hex_sha1(document.getElementById('prefix').value + 
                   document.getElementById('message').value));
+            break;
+        case "oghashb64":
+            document.getElementById('hash').value =
+            limitlength(og_b64_sha1(document.getElementById('prefix').value + 
+                  document.getElementById('message').value));
+            break;
+        case "oghashb96":
+            document.getElementById('hash').value =
+            limitlength(og_b96_sha1(document.getElementById('prefix').value + 
+                  document.getElementById('message').value));
+            break;
+        }
     });
 });
