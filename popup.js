@@ -23,6 +23,9 @@ var blocksize = 64;
 function hex_sha1(x,y){return binb2hex(hmac_sha1(x,y));}
 function b64_sha1(x,y){return binb2b64(hmac_sha1(x,y));}
 function b96_sha1(x,y){return binb2b96(hmac_sha1(x,y));}
+function og_hex_sha1(s){return binb2hex(core_sha1(str2binb(s), s.length * chrsz));}
+function og_b64_sha1(s){return binb2b64(core_sha1(str2binb(s), s.length * chrsz));}
+function og_b96_sha1(s){return binb2b96(core_sha1(str2binb(s), s.length * chrsz));}
 
 /*
  * * Calculate the SHA-1 of an array of big-endian words, and a bit length
@@ -257,6 +260,14 @@ function pad(n, width, z) {
           return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
 }
 
+function addOriginalListener(Id) {
+var hash = document.getElementById('oghashb');
+    hash.addEventListener('click', function() {
+        document.getElementById('hash').value =
+        limitlength(og_hex_sha1(document.getElementById('prefix').value + 
+                  document.getElementById('message').value));
+    });
+}
 document.addEventListener('DOMContentLoaded', function() {
     var hash = document.getElementById('hashb');
     hash.addEventListener('click', function() {
@@ -277,5 +288,23 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('hash').value =
         limitlength(b96_sha1(document.getElementById('prefix').value,
                 document.getElementById('message').value));
+    });
+    hash = document.getElementById('oghashb');
+    hash.addEventListener('click', function() {
+        document.getElementById('hash').value =
+        limitlength(og_hex_sha1(document.getElementById('prefix').value + 
+                  document.getElementById('message').value));
+    });
+    hash = document.getElementById('ogb64b');
+    hash.addEventListener('click', function() {
+        document.getElementById('hash').value =
+        limitlength(og_b64_sha1(document.getElementById('prefix').value + 
+                  document.getElementById('message').value));
+    });
+    hash = document.getElementById('ograndom');
+    hash.addEventListener('click', function() {
+        document.getElementById('hash').value =
+        limitlength(og_b96_sha1(document.getElementById('prefix').value + 
+                  document.getElementById('message').value));
     });
 });
